@@ -1,45 +1,105 @@
 {% extends 'base.html' %}
 
-{% block title %}Contacto{% endblock %}
+{% block title %}Productos{% endblock %}
 
 {% block header %}
 {% load static %}
-
- <!-- Cabecera -->
- <header class="masthead" style="background-image: url({% static 'img/portfolio-bg.jpg' %})">
+<header class="masthead" style="background-image: url({% static 'img/productos.jpg' %})">
     <div class="overlay"></div>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Portafolio</h1>
-            <span class="subheading">Currículo</span>
-          </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Nuestros Productos</h1>
+                    <span class="subheading">Soluciones innovadoras para la agricultura moderna</span>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
-
+</header>
 {% endblock %}
 
 {% block content %}
-{% for project in projects %}
-{{ project }}
-<h1>Projects Page</h1>
- <!-- Proyecto -->
- <div class="row project">  	
-    <div class="col-lg-3 col-md-4 offset-lg-1">
-      {% if project.image %}
-        <img class="img-fluid" src="{{ project.image.url }}" alt="">
-        {% endif %}
+<!-- AOS CSS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<div class="container my-5">
+    <div class="row">
+        <!-- Carrusel de Imágenes -->
+        <div class="col-md-6" data-aos="fade-right">
+            <div id="imageCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% for project in projects %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        {% if project.image %}
+                        <img src="{{ project.image.url }}" class="d-block w-100 rounded shadow img-zoom" alt="{{ project.name }}" data-toggle="modal" data-target="#imageModal" data-src="{{ project.image.url }}">
+                        {% else %}
+                        <img src="{% static 'img/producto1.jpg' %}" class="d-block w-100 rounded shadow img-zoom" alt="Imagen no disponible" data-toggle="modal" data-target="#imageModal" data-src="{% static 'img/producto1.jpg' %}">
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Carrusel de Descripciones -->
+        <div class="col-md-6" data-aos="fade-left">
+            <div id="descCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner bg-light p-4 rounded shadow-sm">
+                    {% for project in projects %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <h4 class="text-success">{{ project.name }}</h4>
+                        <p>{{ project.description|default:"Sin descripción." }}</p>
+                        {% if project.url %}
+                        <a href="{{ project.url }}" target="_blank" class="btn btn-outline-success btn-sm mt-2">Más información</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
-  <div class="col-lg-7 col-md-8">
-        <h2 class="section-heading title">{{ project.name }}</h2>   
-    <p>{{ project.description }}</p>
-    {% if project.url %}
-    <p><a href="{{ project.url }}" target="_blank">Más información</a></p>
-    {% endif %}
+</div>
+
+<!-- Modal para Zoom de Imagen -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content bg-dark">
+      <div class="modal-body p-0">
+        <img src="" class="w-100" id="zoomedImage" alt="Zoom de imagen">
+      </div>
     </div>
- </div>
-{% endfor %}    
-{% endblock content %}
+  </div>
+</div>
+
+<!-- AOS & sincronización de carruseles -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init();
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const imageCarousel = $('#imageCarousel');
+        const descCarousel = $('#descCarousel');
+
+        imageCarousel.on('slide.bs.carousel', function (e) {
+            descCarousel.carousel(e.to);
+        });
+
+        descCarousel.on('slide.bs.carousel', function (e) {
+            imageCarousel.carousel(e.to);
+        });
+
+        // Modal Zoom Image
+        $('.img-zoom').on('click', function () {
+            const src = $(this).data('src');
+            $('#zoomedImage').attr('src', src);
+        });
+    });
+</script>
+{% endblock %}

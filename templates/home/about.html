@@ -1,41 +1,67 @@
 {% extends 'base.html' %}
 
-{% block title %}About{% endblock %}
+{% block title %}Acerca de{% endblock %}
 
 {% block header %}
 {% load static %}
-
-     <!-- Cabecera -->
-     <header class="masthead" style="background-image: url({% static 'img/about-bg.jpg' %})">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-              <div class="site-heading">
-                <h1>Acerca de</h1>
-                <span class="subheading">Biografía</span>
-              </div>
+<header class="masthead" style="background-image: url({% static 'img/lechones.jpg' %})">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto text-center">
+                <div class="site-heading" data-aos="fade-down" data-aos-duration="1200">
+                    <h1>¿Quiénes somos?</h1>
+                    <span class="subheading">Innovación y compromiso en la alimentación automatizada</span>
+                </div>
             </div>
-          </div>
         </div>
-      </header>
+    </div>
+</header>
 {% endblock %}
 
 {% block content %}
-<h1>About Page</h1>
- <!-- Contenido Principal -->
-    <div class="row">   
-      <div class="col-lg-3 col-md-4 offset-lg-1">
-        {% load static %}
-        <img class="img-fluid avatar" src="{% static 'img/avatar.jpg' %}" alt="">
-      </div>
-      <div class="col-lg-7 col-md-8">
-        <h2 class="section-heading">{{ name }}</h2> 
-        <p>{{ description }}</p>  
-      </div>
-    </div>  
- 
+<section class="my-5">
+    <div class="container">
+        <div class="row justify-content-center g-4">
+            <div class="col-lg-10">
 
-  <hr>
+                <!-- Historia -->
+                <div class="bg-light p-5 rounded shadow" data-aos="fade-up">
+                    <h2 class="section-heading mb-3">Nuestra Historia</h2>
+                    <p>
+                        <strong>Agrofeed System</strong> nació en 2010 con el objetivo de transformar la manera en que se alimenta el ganado.
+                        Desde entonces, hemos crecido hasta convertirnos en líderes del sector, gracias a nuestra tecnología de vanguardia y nuestro equipo de expertos.
+                    </p>
+                </div>
 
-{% endblock content %}
+                <!-- Misión -->
+                <div class="bg-light p-5 rounded shadow mt-5" data-aos="fade-left">
+                    <h2 class="section-heading mb-3">Misión</h2>
+                    <p>
+                        Facilitar la alimentación del ganado mediante soluciones automatizadas que mejoren la eficiencia y reduzcan los costos para los productores.
+                    </p>
+                </div>
+
+                <!-- Visión -->
+                <div class="bg-light p-5 rounded shadow mt-5" data-aos="fade-right">
+                    <h2 class="section-heading mb-3">Visión</h2>
+                    <p>
+                        Ser la empresa líder en innovación agrícola, reconocida por nuestra contribución a la sostenibilidad y el bienestar animal.
+                    </p>
+                </div>
+
+                <!-- Valores -->
+                <div class="bg-light p-5 rounded shadow mt-5" data-aos="zoom-in">
+                    <h2 class="section-heading mb-3">Valores</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><strong>Innovación:</strong> Buscamos constantemente nuevas formas de mejorar nuestros productos y servicios.</li>
+                        <li class="mb-2"><strong>Compromiso:</strong> Trabajamos con pasión y dedicación para satisfacer las necesidades de nuestros clientes.</li>
+                        <li class="mb-2"><strong>Sostenibilidad:</strong> Nos esforzamos por reducir el impacto ambiental en todas nuestras operaciones.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+.parallax-section {
+    background-image: url('/static/img/cerdo_b.jpg'); /* usa tu imagen */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 80vh;
+    position: relative;
+    z-index: 1;
+}
+
+.parallax-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* oscurece el fondo para que el texto resalte */
+    z-index: 0;
+}
+
+.parallax-section > div {
+    position: relative;
+    z-index: 2;
+}

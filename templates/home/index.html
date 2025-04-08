@@ -1,25 +1,75 @@
 {% extends 'base.html' %}
 
-{% block title %}Contacto{% endblock %}
+{% block title %}Inicio{% endblock %}
 
 {% block header %}
 {% load static %}
-<header class="masthead" style="background-image: url({% static 'img/home-bg.jpg' %})">
+<header class="masthead" style="background-image: url({% static 'img/logo.jpg' %})">
     <div class="overlay"></div>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>{{ name }}</h1>
-            <span class="subheading">{{ career }}</span>
-          </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto text-center">
+                <div class="site-heading" data-aos="fade-down" data-aos-duration="1200">
+                    <h1>Agrofeed System</h1>
+                    <span class="subheading">Soluciones automatizadas para una alimentación eficiente y sostenible</span>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
-
+    </div> 
+</header>
 {% endblock %}
 
 {% block content %}
+
+<!-- Sección de presentación -->
+<section class="my-5">
+    <div class="container text-center" data-aos="fade-up">
+        <h2 class="section-heading mb-4" style="font-weight: bold; color: #2d2d2d;">Alimentación para tu Ganado</h2>
+        <div class="col-lg-8 col-md-10 mx-auto bg-white shadow p-5 rounded" data-aos="zoom-in" data-aos-delay="100">
+            <p style="font-size: 1.1rem; color: #444;">
+                En <strong>Agrofeed System</strong>, nos dedicamos a revolucionar la industria agrícola con soluciones automatizadas de alimentación para ganado...
+            </p>
+            <a href="{% url 'about' %}" class="btn btn-success mt-3 px-4 py-2" data-aos="fade-up" data-aos-delay="200">Conoce más sobre nosotros</a>
+        </div>
+    </div>
+</section>
+
+<!-- Sección parallax -->
+<section class="parallax-section d-flex align-items-center justify-content-center text-white text-center">
+    <div data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="display-4 fw-bold">Impulsando el Futuro del Agro</h2>
+        <p class="lead">Soluciones tecnológicas para una alimentación más eficiente</p>
+        <a href="{% url 'about' %}" class="btn btn-light mt-3" data-aos="fade-in" data-aos-delay="150">Ver más</a>
+    </div>
+</section>
+
+<!-- Sección de características -->
+<section class="features-section my-5 py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 text-center" data-aos="flip-left">
+                <div class="p-4 bg-white shadow-sm rounded h-100">
+                    <i class="fa fa-microchip fa-3x text-success mb-3"></i>
+                    <h4 class="mb-2">Tecnología Avanzada</h4>
+                    <p>Utilizamos lo último en automatización...</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center" data-aos="flip-up" data-aos-delay="100">
+                <div class="p-4 bg-white shadow-sm rounded h-100">
+                    <i class="fa fa-seedling fa-3x text-success mb-3"></i>
+                    <h4 class="mb-2">Sostenibilidad</h4>
+                    <p>Nuestros sistemas están diseñados...</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center" data-aos="flip-right" data-aos-delay="200">
+                <div class="p-4 bg-white shadow-sm rounded h-100">
+                    <i class="fa fa-handshake fa-3x text-success mb-3"></i>
+                    <h4 class="mb-2">Compromiso con el Cliente</h4>
+                    <p>Trabajamos codo a codo con los productores...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
